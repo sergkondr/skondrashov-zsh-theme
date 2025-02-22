@@ -9,6 +9,7 @@ And that's it for now.
 
 ### Installation
 - `git clone --quiet https://github.com/sergkondr/skondrashov-zsh-theme ~/.oh-my-zsh/custom/themes/skondrashov`
+- `ln -s ~/.oh-my-zsh/custom/themes/skondrashov/skondrashov.zsh-theme ~/.oh-my-zsh/custom/themes/skondrashov.zsh-theme`
 - `omz theme set skondrashov`
 
 ### Preview 
