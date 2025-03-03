@@ -8,14 +8,13 @@ local yellow_bold=$fg_bold[yellow]
 local magenta_bold=$fg_bold[magenta]
 local cyan_bold=$fg_bold[cyan]
 local white_bold=$fg_bold[white]
-local highlight_bg=$bg[red]
 
 function get_current_dir {
-    echo "%{$green_bold%}${${PWD/#$HOME/~}##*/}%{$reset_color%} "
+    echo "%{$green_bold%}${${PWD/#$HOME/~}##*/}%{$reset_color%}"
 }
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$yellow_bold%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX=" %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} *"
 
 function get_git_prompt {
@@ -26,14 +25,14 @@ function get_git_prompt {
         git_status="[$git_status%{$reset_color%}]"
     fi
 
-    local git_prompt="|  $(git_prompt_info)$git_status"
+    local git_prompt="%{$magenta_bold%}  $(git_prompt_info)$git_status%{$reset_color%}"
     echo $git_prompt
 }
 
 function get_aws_prompt {
     [[ -z $AWS_PROFILE ]] && return
 
-    local aws_prompt="|%{$yellow_bold%} ☁️ $AWS_PROFILE %{$reset_color%}"
+    local aws_prompt="%{$yellow_bold%} ☁️ $AWS_PROFILE%{$reset_color%}"
     echo $aws_prompt
 }
 
@@ -41,7 +40,7 @@ function get_k8s_prompt {
     local kube_current_context=$(kubectl config current-context 2>/dev/null)
     [[ -z $kube_current_context ]] && return
 
-    local k8s_prompt="|%{$blue_bold%} ☸️ $kube_current_context %{$reset_color%}"
+    local k8s_prompt="%{$blue_bold%} ☸️ $kube_current_context %{$reset_color%}"
     echo $k8s_prompt
 }
 
@@ -56,8 +55,8 @@ $(get_aws_prompt) "
     print -rP "$prompt_title"
 }
 
-local cursor='➜'
 function get_cursor_color {
+    local cursor='➜'
     if [[ $? -eq 0 ]]; then
         echo "%{$green_bold%}$cursor %{$reset_color%}"
     else

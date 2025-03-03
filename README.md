@@ -8,10 +8,12 @@ A minimalistic oh-my-zsh theme which displays only things I really need:
 And that's it for now.
 
 ### Installation
-- `git clone --quiet https://github.com/sergkondr/skondrashov-zsh-theme ~/.oh-my-zsh/custom/themes/skondrashov`
-- `ln -s ~/.oh-my-zsh/custom/themes/skondrashov/skondrashov.zsh-theme ~/.oh-my-zsh/custom/themes/skondrashov.zsh-theme`
-- `omz theme set skondrashov`
+```bash
+git clone --quiet https://github.com/sergkondr/skondrashov-zsh-theme ~/.oh-my-zsh/custom/themes/skondrashov
+ln -s ~/.oh-my-zsh/custom/themes/skondrashov/skondrashov.zsh-theme ~/.oh-my-zsh/custom/themes/skondrashov.zsh-theme
+omz theme set skondrashov
+```
 
 ### Preview 
 Words are cheap, this is what it looks like:
-![img.png](img.png)
+![img_1.png](img_1.png)
