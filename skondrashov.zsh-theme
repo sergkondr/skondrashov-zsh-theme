@@ -15,17 +15,12 @@ function get_current_dir {
 
 ZSH_THEME_GIT_PROMPT_PREFIX=""
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} *"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} *%{$reset_color%}"
 
 function get_git_prompt {
-    [[ -z $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] && return
+    [[ -z $(git_prompt_info) ]] && return
 
-    local git_status="$(git_prompt_status)"
-    if [[ -n $git_status ]]; then
-        git_status="[$git_status%{$reset_color%}]"
-    fi
-
-    local git_prompt="%{$magenta_bold%}  $(git_prompt_info)$git_status%{$reset_color%}"
+    local git_prompt="%{$magenta_bold%}  $(git_prompt_info)%{$reset_color%}"
     echo $git_prompt
 }
 
@@ -40,7 +35,7 @@ function get_k8s_prompt {
     local kube_current_context=$(kubectl config current-context 2>/dev/null)
     [[ -z $kube_current_context ]] && return
 
-    local k8s_prompt="%{$blue_bold%} ☸️ $kube_current_context %{$reset_color%}"
+    local k8s_prompt="%{$blue_bold%} ☸️ $kube_current_context%{$reset_color%}"
     echo $k8s_prompt
 }
 
@@ -58,9 +53,9 @@ $(get_aws_prompt) "
 function get_cursor_color {
     local cursor='➜'
     if [[ $? -eq 0 ]]; then
-        echo "%{$green_bold%}$cursor %{$reset_color%}"
+        echo "%{$green_bold%}$cursor%{$reset_color%} "
     else
-        echo "%{$red_bold%}$cursor %{$reset_color%}"
+        echo "%{$red_bold%}$cursor%{$reset_color%} "
     fi
 }
 
